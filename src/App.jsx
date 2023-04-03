@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
+import Nav from './Components/Nav'
 
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <div>
-      <h1 className='text-5xl'>test</h1>
+      <Nav />
     </div>
   )
 }

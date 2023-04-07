@@ -3,7 +3,7 @@ import React from "react";
 export default function Test() {
 
     return (
-        <nav className="flex items-center justify-between h-16 overflow-hidden bg-light-navy lg:flex-col lg:h-screen lg:w-24 lg:rounded-r-3xl">
+        <nav className="flex items-center justify-between h-16 overflow-hidden bg-light-navy lg:flex-col lg:h-screen lg:w-24 lg:rounded-r-3xl lg:fixed">
             <div className="p-6 bg-violet rounded-r-3xl lg:w-full">
                 <img src="/logo.svg" className="lg:h-10"/>
             </div>

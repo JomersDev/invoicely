@@ -6,7 +6,7 @@ import InvoiceList from './Pages/InvoiceList'
 function App() {
 
   return (
-    <div>
+    <div className='lg:flex'>
       <Nav />
       <InvoiceList />
     </div>

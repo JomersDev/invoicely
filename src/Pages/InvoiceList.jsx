@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import NewInvoiceBtn from "../Components/Buttons/NewInvoiceBtn";
 import InvoiceCard from "../Components/InvoiceList/InvoiceCard";
+import data from "../data"
 
 export default function InvoiceList() {
+
+    const [invoices, setInvoices] = useState(data)
+
     return (
         <section className="min-h-screen px-6 pt-8 bg-ghost-white md:px-12 lg:w-full lg:px-80">
             <div className="flex items-center justify-between max-w-3xl mx-auto">
@@ -25,18 +29,16 @@ export default function InvoiceList() {
                 </div>
             </div>
             <div className="flex flex-col items-center mt-8 gap-y-4 md:mt-14">
-                <InvoiceCard />
-                <InvoiceCard />
-                <InvoiceCard />
-                <InvoiceCard />
-                <InvoiceCard />
-                <InvoiceCard />
-                <InvoiceCard />
-                <InvoiceCard />
-                <InvoiceCard />
-                <InvoiceCard />
-                <InvoiceCard />
-                <InvoiceCard />
+                {invoices.map(invoice => {
+                    return <InvoiceCard 
+                                key={invoice.id} 
+                                id={invoice.id}
+                                paymentDue={invoice.paymentDue}
+                                clientName={invoice.clientName}
+                                total={invoice.total}
+                                status={invoice.status}
+                            />
+                })}
             </div>
         </section>
     )

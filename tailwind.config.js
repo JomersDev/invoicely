@@ -11,7 +11,7 @@ export default {
         'light-violet': '#9277FF',
         'navy': '#1E2139',
         'light-navy': '#252945',
-        'Lavender': '#DFE3FA',
+        'lavender': '#DFE3FA',
         'cool-grey': '#888EB0',
         'ube': '#7E88C3',
         'chinese-black': '#0C0E16',

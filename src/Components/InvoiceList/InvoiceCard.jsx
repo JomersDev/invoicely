@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import Status from "../InvoiceDetails/Status";
 
 export default function InvoiceCard({id, paymentDue, clientName, total, status}) {
 
@@ -40,9 +41,7 @@ export default function InvoiceCard({id, paymentDue, clientName, total, status})
                         ${total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </p>
                 </div>
-                <p className={`px-6 py-2 font-bold w-32 text-center text-green-500 bg-green-100 rounded-md ${status === "pending" ? 'bg-orange-100 text-orange-500' : ''} ${status == 'draft' ? 'bg-gray-50 text-gray-700' : ''}`}>
-                    • {status}
-                </p>
+                <Status status={status}/>
             </div>
         </div>
     )

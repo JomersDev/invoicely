@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function InvoiceCard({id, paymentDue, clientName, total,status}) {
+export default function InvoiceCard({id, paymentDue, clientName, total, status}) {
 
     const [year, month, day] = paymentDue.split('-')
     let date = new Date(+year, +month - 1, +day)
@@ -36,10 +36,12 @@ export default function InvoiceCard({id, paymentDue, clientName, total,status}) 
                         ${total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </p>
                 </div>
-                <p className={`px-6 py-2 font-bold w-32 text-center text-green-500 bg-green-100 rounded-md ${status === "pending" ? 'bg-orange-100 text-orange-500' : ''} ${status === "draft" ? 'bg-gray-100 text-gray-500' : ''}`}>
+                <p className={`px-6 py-2 font-bold w-32 text-center text-green-500 bg-green-100 rounded-md ${status === "pending" ? 'bg-orange-100 text-orange-500' : ''} ${status == 'draft' ? 'bg-gray-50 text-gray-700' : ''}`}>
                     • {status}
                 </p>
             </div>
         </div>
     )
 }
+
+//${status === "pending" ? 'bg-orange-100 text-orange-500' : ''}

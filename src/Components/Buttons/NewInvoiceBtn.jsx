@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function NewInvoiceBtn() {
     return (
         <button className="flex items-center justify-center w-24 h-12 font-bold text-white bg-violet gap-x-2 rounded-3xl md:w-36">

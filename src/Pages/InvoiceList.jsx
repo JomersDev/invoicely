@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import NewInvoiceBtn from "../Components/Buttons/NewInvoiceBtn";
 import InvoiceCard from "../Components/InvoiceList/InvoiceCard";
 import data from "../data"

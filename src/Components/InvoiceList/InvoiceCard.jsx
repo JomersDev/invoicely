@@ -1,6 +1,8 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function InvoiceCard({id, paymentDue, clientName, total, status}) {
+
+    const navigate = useNavigate()
 
     const [year, month, day] = paymentDue.split('-')
     let date = new Date(+year, +month - 1, +day)
@@ -8,7 +10,9 @@ export default function InvoiceCard({id, paymentDue, clientName, total, status})
     const formattedDate = `${day} ${textFormatMonth} ${year}`
 
     return (
-        <div className="flex items-center justify-between w-full max-w-3xl p-6 bg-white rounded-lg shadow-sm text-chinese-black md:py-4">
+        <div 
+        onClick={() => navigate(`/${id}`)}
+        className="flex items-center justify-between w-full max-w-3xl p-6 bg-white rounded-lg shadow-sm text-chinese-black md:py-4">
             <div className="flex flex-col gap-y-6 md:flex-row md:gap-x-6">
                 <p className="w-20 font-bold">
                     <span className="text-ube">#</span>{id}
@@ -43,5 +47,3 @@ export default function InvoiceCard({id, paymentDue, clientName, total, status})
         </div>
     )
 }
-
-//${status === "pending" ? 'bg-orange-100 text-orange-500' : ''}

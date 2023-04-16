@@ -1,14 +1,13 @@
 import { useParams } from "react-router-dom"
 import { useState } from "react"
-import data from "../data"
 import Status from "../Components/InvoiceDetails/Status"
 import InvoiceItem from "../Components/InvoiceDetails/InvoiceItem"
 
-export default function InvoiceDetail() {
+export default function InvoiceDetail( { invoices, deleteInvoice, updateStatus }) {
 
     const { id } = useParams()
 
-    const [invoice, setInvoice] = useState(data.find(invoice => invoice.id === id))
+    const invoice = invoices.find(invoice => invoice.id === id)
 
     return (
         <section className="min-h-screen pt-8 bg-ghost-white md:px-12 lg:w-full lg:px-80 text-chinese-black">
@@ -131,10 +130,14 @@ export default function InvoiceDetail() {
                 <button className="px-6 py-3 text-gray-600 bg-gray-100 rounded-3xl">
                     Edit
                 </button>
-                <button className="px-6 py-3 text-white bg-red rounded-3xl">
+                <button 
+                    onClick={() => deleteInvoice(invoice.id)}
+                    className="px-6 py-3 text-white bg-red rounded-3xl">
                     Delete
                 </button>
-                <button className="px-6 py-3 text-white bg-violet rounded-3xl">
+                <button 
+                    onClick={() => updateStatus(invoice.id)}
+                    className="px-6 py-3 text-white bg-violet rounded-3xl">
                     Mark as Paid
                 </button>
             </div>

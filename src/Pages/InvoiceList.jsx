@@ -1,6 +1,7 @@
 import { useState } from "react";
 import NewInvoiceBtn from "../Components/Buttons/NewInvoiceBtn";
 import InvoiceCard from "../Components/InvoiceList/InvoiceCard";
+import Empty from "../Components/InvoiceList/Empty";
 
 export default function InvoiceList(props) {
 
@@ -26,16 +27,20 @@ export default function InvoiceList(props) {
                 </div>
             </div>
             <div className="flex flex-col items-center mt-8 gap-y-4 md:mt-14">
-                {props.invoices.map(invoice => {
-                    return <InvoiceCard 
-                                key={invoice.id} 
-                                id={invoice.id}
-                                paymentDue={invoice.paymentDue}
-                                clientName={invoice.clientName}
-                                total={invoice.total}
-                                status={invoice.status}
-                            />
-                })}
+                {props.invoices.length === 0 ? <Empty/> :
+                    <>
+                        {props.invoices.map(invoice => {
+                            return <InvoiceCard 
+                                        key={invoice.id} 
+                                        id={invoice.id}
+                                        paymentDue={invoice.paymentDue}
+                                        clientName={invoice.clientName}
+                                        total={invoice.total}
+                                        status={invoice.status}
+                                    />
+                        })}
+                    </>
+                }
             </div>
         </section>
     )

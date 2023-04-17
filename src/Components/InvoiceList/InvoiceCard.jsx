@@ -13,7 +13,7 @@ export default function InvoiceCard({id, paymentDue, clientName, total, status})
     return (
         <div 
         onClick={() => navigate(`/${id}`)}
-        className="flex items-center justify-between w-full max-w-3xl p-6 bg-white rounded-lg shadow-sm text-chinese-black md:py-4">
+        className="flex items-center justify-between w-full max-w-3xl p-6 transition-all duration-200 bg-white rounded-lg shadow-sm cursor-pointer text-chinese-black hover:scale-105 md:py-4">
             <div className="flex flex-col gap-y-6 md:flex-row md:gap-x-6">
                 <p className="w-20 font-bold">
                     <span className="text-ube">#</span>{id}

@@ -12,7 +12,7 @@ export default function InvoiceDetail( { invoices, deleteInvoice, updateStatus }
     const invoice = invoices.find(invoice => invoice.id === id)
 
     return (
-        <section className="min-h-screen pt-8 bg-ghost-white md:px-10 lg:w-full lg:px-80 text-chinese-black">
+        <section className="min-h-screen pt-8 bg-ghost-white md:px-10 lg:w-full lg:px-80 text-chinese-black lg:pt-20">
             <div 
                 onClick={() => navigate('/')}
                 className="flex items-center justify-start max-w-3xl mx-6 mb-4 gap-x-4 md:mx-auto hover:text-ube">

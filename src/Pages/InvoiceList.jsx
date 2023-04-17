@@ -13,7 +13,7 @@ export default function InvoiceList(props) {
                         Invoices
                     </h1>
                     <p className="tracking-tight text-cool-grey">
-                        <span className="hidden md:inline-block">There are </span> 7 <span className="hidden md:inline-block">total </span> Invoices
+                        <span className="hidden md:inline-block">There are </span> {props.invoices.length} <span className="hidden md:inline-block">total </span> Invoices
                     </p>
                 </div>
                 <div className="flex gap-x-5">

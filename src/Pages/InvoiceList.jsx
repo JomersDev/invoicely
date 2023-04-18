@@ -23,7 +23,7 @@ export default function InvoiceList(props) {
                         </p>
                         <img src="/icon-arrow-down.svg" alt="down arrow" />
                     </div>
-                    <NewInvoiceBtn />
+                    <NewInvoiceBtn addInvoice={props.addInvoice}/>
                 </div>
             </div>
             <div className="flex flex-col items-center mt-8 gap-y-4 md:mt-14">

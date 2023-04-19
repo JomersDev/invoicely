@@ -1,7 +1,7 @@
 export default function NewInvoiceBtn(props) {
     return (
         <button 
-        onClick={() => props.addInvoice()}
+        onClick={props.handleShowNewInvoice}
         className="flex items-center justify-center w-24 h-12 font-bold text-white bg-violet gap-x-2 rounded-3xl md:w-36">
             <img 
                 className="p-3 -ml-2 bg-white rounded-full"

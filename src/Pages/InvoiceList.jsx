@@ -9,7 +9,6 @@ export default function InvoiceList(props) {
     const [showNewInvoice, setShowNewInvoice] = useState(false)
 
     function handleShowNewInvoice() {
-        console.log('test')
         setShowNewInvoice(prev => !prev)
     }
 

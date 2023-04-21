@@ -1,4 +1,15 @@
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+
 export default function NewInvoiceForm(props) {
+
+    const [formData, setFormData] = useState([])
+
+    const { register, handleSubmit } = useForm();
+    function onSubmit(data) {
+        setFormData(data)
+    }
+    console.log(formData)
 
     return (
         <div className="min-h-screen bg-white">
@@ -13,9 +24,14 @@ export default function NewInvoiceForm(props) {
             <h1>
                 New Invoice
             </h1>
-            <form>
-                <input type="text" placeholder="Description" />
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <input {...register("firstName")} />
+                
+                <input {...register("lastName")} />
+                
+                <input type="submit" />
             </form>
+            <h1>{formData.firstName}</h1>
         </div>
     )
 }

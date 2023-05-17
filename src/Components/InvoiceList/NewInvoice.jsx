@@ -1,25 +1,6 @@
-<<<<<<< HEAD:src/Components/InvoiceList/NewInvoice.jsx
 export default function NewInvoice(props) {
     return (
        <div className="w-full min-h-screen bg-green-100">
-=======
-import { useForm } from "react-hook-form";
-import { useState } from "react";
-
-export default function NewInvoiceForm(props) {
-
-    const [formData, setFormData] = useState({})
-
-    const { register, handleSubmit } = useForm();
-    function onSubmit(data) {
-        setFormData(data)
-    }
-
-    console.log(formData)
-
-    return (
-        <div className="min-h-screen p-4 bg-white">
->>>>>>> 3e6e8705ddfd637d09dbbb7c2a9c4163f30f299b:src/Components/InvoiceList/NewInvoiceForm.jsx
             <div 
                 onClick={props.handleShowNewInvoice}
                 className="flex items-center justify-start gap-x-3">

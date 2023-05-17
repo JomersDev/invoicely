@@ -1,7 +1,6 @@
-export default function NewInvoiceForm(props) {
-
+export default function NewInvoice(props) {
     return (
-        <div className="absolute min-h-screen bg-white top-10 right-28">
+       <div className="w-full min-h-screen bg-green-100">
             <div 
                 onClick={props.handleShowNewInvoice}
                 className="flex items-center justify-start">

@@ -17,7 +17,7 @@ export default function InvoiceDetail( { invoices, deleteInvoice, updateStatus }
                 onClick={() => navigate('/')}
                 className="flex items-center justify-start max-w-3xl mx-6 mb-4 gap-x-4 md:mx-auto hover:text-ube">
                     <img src="/public/icon-arrow-left.svg" alt="arrow right icon" />
-                    <p className="mt-1 font-bold">
+                    <p className="mt-1 font-bold cursor-pointer">
                         Go back
                     </p>
             </div>

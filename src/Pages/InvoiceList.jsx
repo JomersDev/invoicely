@@ -1,30 +1,24 @@
-import { useState } from "react";
+//import { useState } from "react";
 import NewInvoiceBtn from "../Components/Buttons/NewInvoiceBtn";
 import InvoiceCard from "../Components/InvoiceList/InvoiceCard";
 import Empty from "../Components/InvoiceList/Empty";
 import NewInvoice from "../Components/InvoiceList/NewInvoice";
 
+import { useInvoiceStore } from '../stateManagement/InvoiceStore'
+
 export default function InvoiceList(props) {
 
-    const [showNewInvoice, setShowNewInvoice] = useState(false)
-
-    function handleShowNewInvoice() {
-        setShowNewInvoice(prev => !prev)
-    }
-    //{showNewInvoice && <NewInvoiceForm handleShowNewInvoice={handleShowNewInvoice}/>}
+    const invoices = useInvoiceStore(state => state.invoices)
 
     return (
             <section className="min-h-screen px-6 pt-8 bg-ghost-white md:px-12 lg:w-full lg:px-80">
-                {
-                    showNewInvoice && <NewInvoice handleShowNewInvoice={handleShowNewInvoice}/>
-                }
                 <div className="flex items-center justify-between max-w-3xl mx-auto">
                     <div>
                         <h1 className="text-2xl font-bold tracking-tighter text-chinese-black md:text-4xl">
                             Invoices
                         </h1>
                         <p className="tracking-tight text-cool-grey">
-                            <span className="hidden md:inline-block">There are </span> {props.invoices.length} <span className="hidden md:inline-block">total </span> Invoices
+                            <span className="hidden md:inline-block">There are </span> length <span className="hidden md:inline-block">total </span> Invoices
                         </p>
                     </div>
                     <div className="relative flex gap-x-5">
@@ -34,13 +28,12 @@ export default function InvoiceList(props) {
                             </p>
                             <img src="/icon-arrow-down.svg" alt="down arrow" />
                         </div>
-                        <NewInvoiceBtn addInvoice={props.addInvoice} handleShowNewInvoice={handleShowNewInvoice}/>
                     </div>
                 </div>
                 <div className="flex flex-col items-center mt-8 gap-y-4 md:mt-14">
-                    {props.invoices.length === 0 ? <Empty/> :
+                    {invoices.length === 0 ? <Empty/> :
                         <>
-                            {props.invoices.map(invoice => {
+                            {invoices.map(invoice => {
                                 return <InvoiceCard 
                                             key={invoice.id} 
                                             id={invoice.id}

@@ -1,4 +1,3 @@
-//import { useState } from "react";
 import NewInvoiceBtn from "../Components/Buttons/NewInvoiceBtn";
 import InvoiceCard from "../Components/InvoiceList/InvoiceCard";
 import Empty from "../Components/InvoiceList/Empty";

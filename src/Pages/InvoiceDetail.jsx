@@ -1,14 +1,23 @@
 import { useParams, useNavigate} from "react-router-dom"
+import { useInvoiceStore } from '../stateManagement/InvoiceStore'
+
+// Components 
 import Status from "../Components/InvoiceDetails/Status"
 import InvoiceItem from "../Components/InvoiceDetails/InvoiceItem"
 import MarkAsPaid from "../Components/Buttons/MarkAsPaid"
 import Edit from "../Components/Buttons/Edit"
-import Delete from "../Components/Buttons/Delete"
+import Delete from '../Components/Buttons/Delete'
 
-export default function InvoiceDetail( { invoices, deleteInvoice, updateStatus }) {
+export default function InvoiceDetail() {
 
+    // bring in all invoices from invoiceStore
+    const invoices = useInvoiceStore(state => state.invoices)
+
+    // get the id from the urlParam
     const { id } = useParams()
     const navigate = useNavigate()
+    
+    // return the invoice that matches the urlParam id
     const invoice = invoices.find(invoice => invoice.id === id)
 
     return (
@@ -30,8 +39,8 @@ export default function InvoiceDetail( { invoices, deleteInvoice, updateStatus }
                 <Status status={invoice.status}/>
                 <div className="hidden ml-32 font-bold md:flex gap-x-2">
                     <Edit />
-                    <Delete deleteInvoice={deleteInvoice} invoice={invoice}/>
-                    <MarkAsPaid updateStatus={updateStatus} invoice={invoice}/>
+                    <Delete/>
+                    <MarkAsPaid/>
                 </div>
             </div>
             
@@ -164,8 +173,8 @@ export default function InvoiceDetail( { invoices, deleteInvoice, updateStatus }
 
             <div className="flex items-center justify-center h-24 px-6 font-bold bg-white shadow-sm mt-14 gap-x-2 md:hidden">
                 <Edit />
-                <Delete deleteInvoice={deleteInvoice} invoice={invoice}/>
-                <MarkAsPaid updateStatus={updateStatus} invoice={invoice}/>
+                <Delete />
+                <MarkAsPaid />
             </div>
 
         </section>

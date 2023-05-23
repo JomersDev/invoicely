@@ -10,7 +10,8 @@ export const useInvoiceStore = create(
           fetch('http://localhost:4000/api/invoices')
             .then(response => response.json())
             .then(data => set({invoices: data}))
-        }
+        },
+        deleteInvoice: (id) => set((state) => ({invoices: state.invoices.filter(invoice => invoice._id !== id)}))
       }
     ),
     {
@@ -18,3 +19,12 @@ export const useInvoiceStore = create(
     }
   )
 )
+
+/*
+
+function deleteInvoice(id) {
+  setInvoices(invoices.filter(invoice => invoice.id !== id))
+  navigate('/')
+}
+
+*/

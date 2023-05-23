@@ -39,7 +39,7 @@ export default function InvoiceDetail() {
                 <Status status={invoice.status}/>
                 <div className="hidden ml-32 font-bold md:flex gap-x-2">
                     <Edit />
-                    <Delete/>
+                    <Delete invoice={invoice}/>
                     <MarkAsPaid/>
                 </div>
             </div>
@@ -173,7 +173,7 @@ export default function InvoiceDetail() {
 
             <div className="flex items-center justify-center h-24 px-6 font-bold bg-white shadow-sm mt-14 gap-x-2 md:hidden">
                 <Edit />
-                <Delete />
+                <Delete invoice={invoice}/>
                 <MarkAsPaid />
             </div>
 

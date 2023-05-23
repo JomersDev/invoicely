@@ -32,15 +32,6 @@ function App() {
   }
   */
 
-  //filter invoice state and return all invoices that do match the id of the selected invoice
-
-/*
-  function deleteInvoice(id) {
-    setInvoices(invoices.filter(invoice => invoice.id !== id))
-    navigate('/')
-  }
-*/
-
 /*
 
   function addInvoice(invoiceData) {

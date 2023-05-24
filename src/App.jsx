@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react'
-import Nav from './Components/Nav'
-import InvoiceList from './Pages/InvoiceList'
 import { Routes, Route } from "react-router-dom"
-import InvoiceDetail from './Pages/InvoiceDetail'
-
 import { useInvoiceStore } from './stateManagement/InvoiceStore'
 
-function App() {
+// Components and Pages
+import Nav from './Components/Nav'
+import InvoiceList from './Pages/InvoiceList'
+import InvoiceDetail from './Pages/InvoiceDetail'
+import NewInvoice from './Pages/NewInvoice'
 
+function App() {
 
   const fetchInvoices = useInvoiceStore(state => state.fetchInvoices)
   const invoices = useInvoiceStore(state => state.invoices)
@@ -17,20 +18,6 @@ function App() {
   },[fetchInvoices])
 
   console.log(invoices)
-
-  // map over the invoice state array and if the id matches the id of the selected invoice spread in all object details and change the status key to 'paid'
-
-  /*
-  function updateStatus(id) {
-    setInvoices(invoices.map(invoice => {
-      if (invoice.id === id) {
-        return {...invoice, status: 'paid'}
-      } else {
-        return invoice
-      }
-    }))
-  }
-  */
 
 /*
 
@@ -48,6 +35,7 @@ function App() {
       <Routes>
         <Route path='/' element={ <InvoiceList />} />
         <Route path='/:id' element={ <InvoiceDetail />} />
+        <Route path='/create' element={ <NewInvoice />} />
       </Routes>
     </div>
   )

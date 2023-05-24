@@ -11,14 +11,7 @@ export const useInvoiceStore = create(
             .then(response => response.json())
             .then(data => set({invoices: data}))
         },
-        deleteInvoice: (id) => set((state) => ({invoices: state.invoices.filter(invoice => invoice._id !== id)})),
-        updateInvoice: (id) => set((state) => ({invoices: state.invoices.map(invoice => {
-          if (invoice._id === id) {
-            return {...invoice, status: 'paid'}
-          } else {
-            return invoice
-          }
-        })}))
+        deleteInvoice: (id) => set((state) => ({invoices: state.invoices.filter(invoice => invoice._id !== id)}))
       }
     ),
     {

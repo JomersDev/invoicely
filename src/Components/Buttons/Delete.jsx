@@ -9,7 +9,7 @@ export default function Delete({ invoice }) {
   const deleteInvoice = useInvoiceStore(state => state.deleteInvoice)
 
   // function that sends the DELETE request and also deletes the invoice from global state if the response returned ok
-  async function handleClick() {
+  async function handleDelete() {
     const response = await fetch(`http://localhost:4000/api/invoices/${invoice._id}`, {
       method: 'DELETE'
     })
@@ -23,7 +23,7 @@ export default function Delete({ invoice }) {
 
   return (
     <button
-      onClick={handleClick} 
+      onClick={handleDelete} 
       className="px-6 py-3 text-white bg-red rounded-3xl">
         Delete
     </button>

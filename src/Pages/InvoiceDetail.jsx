@@ -36,7 +36,7 @@ export default function InvoiceDetail() {
                 <p className="tracking-tight text-grey-100 text-ube">
                     Status
                 </p>
-                <Status status={invoice.status}/>
+                <Status status={invoice?.status}/>
                 <div className="hidden ml-32 font-bold md:flex gap-x-2">
                     <Edit />
                     <Delete invoice={invoice}/>
@@ -52,25 +52,25 @@ export default function InvoiceDetail() {
                         <div>
                             <p className="font-bold">
                                 <span className="text-ube">#</span>
-                                {invoice.id}
+                                {invoice?.id}
                                 <span className="block mt-2 text-sm font-medium text-ube">
-                                    {invoice.description}
+                                    {invoice?.description}
                                 </span>
                             </p>
                         </div>
                         <div>
                             <p className="text-sm text-ube md:text-right">
                                 <span className="block">
-                                    {invoice.senderAddress.street}
+                                    {invoice?.senderAddress.street}
                                 </span>
                                 <span className="block">
-                                    {invoice.senderAddress.city}
+                                    {invoice?.senderAddress.city}
                                 </span>
                                 <span className="block">
-                                    {invoice.senderAddress.postCode}
+                                    {invoice?.senderAddress.postCode}
                                 </span>
                                 <span className="block">
-                                    {invoice.senderAddress.country}
+                                    {invoice?.senderAddress.country}
                                 </span>
                             </p>
                         </div>
@@ -84,13 +84,13 @@ export default function InvoiceDetail() {
                                     <span className="block mb-2 text-sm font-medium text-ube">
                                         Invoice Date
                                     </span>
-                                    {invoice.createdAt}
+                                    {invoice?.createdAt}
                                 </p>
                                 <p className="font-bold">
                                     <span className="block mb-2 text-sm font-medium text-ube">
                                         Payment Due
                                     </span>
-                                    {invoice.paymentDue}
+                                    {invoice?.paymentDue}
                                 </p>
                             </div>
 
@@ -100,20 +100,20 @@ export default function InvoiceDetail() {
                                         Bill To
                                     </span>
                                     <span>
-                                        {invoice.clientName}
+                                        {invoice?.clientName}
                                     </span>
                                     <span className="block mt-2 text-sm font-medium text-ube">
                                         <span className="block">
-                                            {invoice.clientAddress.street}
+                                            {invoice?.clientAddress.street}
                                         </span>
                                         <span className="block">
-                                            {invoice.clientAddress.city}
+                                            {invoice?.clientAddress.city}
                                         </span>
                                         <span className="block">
-                                            {invoice.clientAddress.postCode}
+                                            {invoice?.clientAddress.postCode}
                                         </span>
                                         <span className="block">
-                                            {invoice.clientAddress.country}
+                                            {invoice?.clientAddress.country}
                                         </span>
                                     </span>
                                 </p>
@@ -125,7 +125,7 @@ export default function InvoiceDetail() {
                                 <span className="block mb-2 text-sm font-medium text-ube">
                                     Sent to
                                 </span>
-                                {invoice.clientEmail}
+                                {invoice?.clientEmail}
                             </p>
                         </div>
 
@@ -154,7 +154,7 @@ export default function InvoiceDetail() {
                         </div>
                         
                         {/* Render an InvoiceItem component for each item found in the invoice.items array */}
-                        {invoice.items.map(item => {
+                        {invoice?.items.map(item => {
                             return <InvoiceItem key={item.name} name={item.name} quantity={item.quantity} price={item.price} total={item.total} />
                         })}
 
@@ -164,7 +164,7 @@ export default function InvoiceDetail() {
                             Grand Total
                         </p>
                         <p className="text-2xl font-bold">
-                            ${invoice.total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                            ${invoice?.total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                         </p>
                     </div>
                 </div>

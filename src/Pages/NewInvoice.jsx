@@ -1,17 +1,26 @@
-import { useForm } from "react-hook-form"
+import { useForm, useFieldArray } from "react-hook-form"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import generateID  from '../utils/idgenerator'
+import { add, parseISO, format } from 'date-fns'
 
 export default function NewInvoice(props) {
 
   const [formData, setFormData] = useState({})
-
+  
+  // react router navigate hook
   const navigate = useNavigate()
+  
+  // react hook form setup
+  const { register, control, handleSubmit } = useForm()
+  const { fields, remove, append } = useFieldArray({
+    control,
+    name: "items"
+  })
 
-  const { register, handleSubmit } = useForm()
   const onSubmit = data => {
-    console.log(data)
-    setFormData(data)
+    console.log({...data, id: generateID(2, 1000, 10000), paymentDue: format(add(parseISO(data.createdAt), {days: data.paymentTerms}), 'yyyy/MM/dd'), status: 'pending'})
+    setFormData({...data, id: generateID(2, 1000, 10000), status: 'pending'})
   }
   
   return (
@@ -34,21 +43,21 @@ export default function NewInvoice(props) {
             <h3 className="font-semibold text-violet">Bill From</h3>
             <div className="flex flex-col gap-y-2">
               <label className="block text-xs text-ube">Street Address</label>
-              <input {...register("streetAddress")} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
+              <input {...register("senderAddress.street")} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
             </div>
             <div className="flex gap-x-8">
               <div className="flex flex-col gap-y-2">
                 <label className="block text-xs text-ube">City</label>
-                <input {...register("city")} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
+                <input {...register("senderAddress.city")} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
               </div>
               <div className="flex flex-col gap-y-2">
                 <label className="block text-xs text-ube">Post Code</label>
-                <input {...register("postCode")} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
+                <input {...register("senderAddress.postCode")} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
               </div>
             </div>
             <div className="flex flex-col gap-y-2">
               <label className="block text-xs text-ube">Country</label>
-              <input {...register("country")} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
+              <input {...register("senderAddress.country")} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
             </div>
           </div>
 
@@ -65,21 +74,21 @@ export default function NewInvoice(props) {
             </div>
             <div className="flex flex-col gap-y-2">
               <label className="block text-xs text-ube">Street Address</label>
-              <input {...register("clientStreet")} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
+              <input {...register("clientAddress.street")} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
             </div>
             <div className="flex gap-x-8">
               <div className="flex flex-col gap-y-2">
                 <label className="block text-xs text-ube">City</label>
-                <input {...register("clientCity")} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
+                <input {...register("clientAddress.city")} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
               </div>
               <div className="flex flex-col gap-y-2">
                 <label className="block text-xs text-ube">Post Code</label>
-                <input {...register("clientPostCode")} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
+                <input {...register("clientAddress.postCode")} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
               </div>
             </div>
             <div className="flex flex-col gap-y-2">
               <label className="block text-xs text-ube">Country</label>
-              <input {...register("clientCountry")} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
+              <input {...register("clientAddress.country")} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
             </div>
           </div>
 
@@ -87,7 +96,7 @@ export default function NewInvoice(props) {
           <div className="flex flex-col gap-y-6">
             <div className="flex flex-col gap-y-2">
               <label className="block text-xs text-ube">Invoice Date</label>
-              <input type="date" {...register("invoiceDate")} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
+              <input type="date" {...register("createdAt")} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
             </div>
             <div className="flex flex-col gap-y-2">
               <label className="block text-xs text-ube">Payment Terms</label>
@@ -99,32 +108,35 @@ export default function NewInvoice(props) {
             </div>
           </div>
 
-          {/* Bill To Section*/}
+          {/* Items Section*/}
           <div className="flex flex-col gap-y-6">
-            <h3 className="font-semibold text-ube">Item List</h3>
-              <div className="flex flex-col gap-y-2">
-                <label className="block text-xs text-ube">Item Name</label>
-                <input {...register("itemName")} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
-              </div>
-              <div className="flex gap-x-2">
-                <div className="flex flex-col gap-y-2">
-                  <label className="block text-xs text-ube">Qty.</label>
-                  <input defaultValue={1} {...register("quantity")} className="px-3 py-3 font-semibold border rounded-sm w-14"/>
-                </div>
-                <div className="flex flex-col gap-y-2">
-                  <label className="block text-xs text-ube">Price</label>
-                  <input {...register("price")} className="px-6 py-3 font-semibold border rounded-sm w-28"/>
+            {fields.map(({ id, name, age }, index) => (
+              <div key={id}> 
+                 <div className="flex flex-col gap-y-2">
+                  <label className="block text-xs text-ube">Item Name</label>
+                  <input {...register(`items[${index}].name`)} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
                 </div>
                 <div>
-                  <p className="block text-xs text-ube">Total</p>
-                  <p className="text-ube">
-                    {formData.price && (formData.quantity * formData.price)}
-                  </p>
+                  <div className="flex flex-col gap-y-2">
+                    <label className="block text-xs text-ube">Qty.</label>
+                    <input {...register(`items[${index}].quantity`)} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
+                  </div>
+                  <div className="flex flex-col gap-y-2">
+                    <label className="block text-xs text-ube">Price</label>
+                    <input {...register(`items[${index}].price`)} className="w-full px-6 py-3 font-semibold border rounded-sm"/>
+                  </div>
+                  <button type="button" onClick={() => remove(index)}>
+                    Remove
+                  </button>
                 </div>
               </div>
+            ))}
+            <button type="button" onClick={() => append({})}>
+              + Add New Item
+            </button>
           </div>
           
-          <input type="submit" />
+          <button type="submit">Save & Send</button>
       </form>
     </div>
   )

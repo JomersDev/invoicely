@@ -1,14 +1,14 @@
 const data = [
   {
     "id": "RT3080",
-    "createdAt": "2021-08-18",
+    "createdAt": "2021-08-18", 
     "paymentDue": "2021-08-19",
-    "description": "Re-branding",
-    "paymentTerms": 1,
-    "clientName": "Jensen Huang",
+    "description": "Re-branding", 
+    "paymentTerms": 1, 
+    "clientName": "Jensen Huang", 
     "clientEmail": "jensenh@mail.com",
     "status": "paid",
-    "senderAddress": {
+    "senderAddress": { 
       "street": "19 Union Terrace",
       "city": "London",
       "postCode": "E1 3EZ",
@@ -25,10 +25,10 @@ const data = [
         "name": "Brand Guidelines",
         "quantity": 1,
         "price": 1800.90,
-        "total": 1800.90
+        "total": 1800.90 // n
       }
     ],
-    "total": 1800.90
+    "total": 1800.90 // n
   },
   {
     "id": "XM9141",
